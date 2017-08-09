@@ -31,7 +31,7 @@ amqp.connect('amqp://172.31.55.143:8090', function(err, conn) {
     //Note: on Node 6 Buffer.from(msg) should be used
 	//The message content is a byte array
     ch.sendToQueue(q, new Buffer(msg));
-	ch.sendToQueue(q, new Buffer(msg));
+	//ch.sendToQueue(q, new Buffer(msg));
     console.log(" [x] Sent %s", msg);
   });
   //close the connection and exit
