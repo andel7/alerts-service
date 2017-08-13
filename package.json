@@ -13,6 +13,9 @@
   "author": "ftr",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^0.5.1"
+    "amqplib": "^0.5.1",
+    "express": "^4.15.3",
+    "swagger-tools": "^0.10.1",
+    "yamljs": "^0.3.0"
   }
 }
