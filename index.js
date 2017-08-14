@@ -47,7 +47,14 @@ function writeData(res){
 			
 			ch.consume(q, function(msg) {
 				console.log("  Received ", msg.content.toString());
-				global.returnStr = returnStr+JSON.stringify({ Msg: msg.content.toString()});
+				if (returnStr==""){
+					//first
+					charBetween = '';
+				}else{console.log("not first");
+					charBetween = ',';
+				}
+				global.returnStr = returnStr+charBetween+JSON.stringify({ Msg: msg.content.toString()});
+				
 			}, {noAck: false});
 			
 		});
