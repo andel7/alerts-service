@@ -8,12 +8,19 @@ var app = express();
 //importing the HTTP libraries
 var http = require('http');
 var msg = "";
-
+global.returnStr = "";
 app.get('/all', function (req, res) {
+	console.log("ALL")
    // read data
+	res.setHeader('Content-Type', 'application/json');
+    writeData(res);
+	
+	 setTimeout(function() {res.write('['+global.returnStr+']')}, 500);
+	//res.write(global.returnStr);   
+	console.log("  returnStr OUT: "+global.returnStr);
+	global.returnStr= "";
+   
  
-   res.setHeader('Content-Type', 'application/json');
-   writeData(res);	
 })
 
 var server = app.listen(1443, function () {
@@ -23,23 +30,29 @@ var server = app.listen(1443, function () {
    console.log("Example app listening at http://%s:%s", host, port)
 
 })
+
+
+var lastRes ="";
+
 function writeData(res){
+
+	
 	//open a connection and a channel
+	
 	amqp.connect('amqp://172.31.55.143:8090', function(err, conn) {
 		conn.createChannel(function(err, ch) {
 			var q = 'alertsQueue';
+			
 			ch.assertQueue(q, {durable: false});
+			
 			ch.consume(q, function(msg) {
 				console.log("  Received ", msg.content.toString());
-				res.write(JSON.stringify({ Msg: msg.content.toString() }));
-				
+				global.returnStr = returnStr+JSON.stringify({ Msg: msg.content.toString()});
 			}, {noAck: false});
 			
 		});
-		
 		 setTimeout(function() { conn.close();console.log("stop connection - listener is working")}, 500);
 		
-		 
 	});
 }
  
