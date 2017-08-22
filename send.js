@@ -20,6 +20,8 @@ console.log(" [x] before conn :::", msg);
 
 //open a connection and a channel
 amqp.connect('amqp://172.31.55.143:8090', function(err, conn) {
+console.log(err);
+
  conn.createChannel(function(err, ch) {
     
     var q = 'alertsQueue';
