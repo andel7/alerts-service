@@ -22,7 +22,7 @@ console.log(" [x] before conn :::", msg);
 /*
 amqp.connect('amqp://172.31.55.143:8090', function(err, conn) {
 */
-amqp.connect('amqp://10.12.65.36:4369', function(err, conn) {
+amqp.connect('amqp://10.12.65.36:5672', function(err, conn) {
 console.log(err);
 
  conn.createChannel(function(err, ch) {
