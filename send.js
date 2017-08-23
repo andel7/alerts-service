@@ -16,6 +16,7 @@ process.argv.forEach(function (val, index, array) {
 	
 });
 
+console.log("process.env.AMQP_URL: ", process.env.AMQP_URL);
 console.log(" [x] before conn :::", msg);
 
 //open a connection and a channel
