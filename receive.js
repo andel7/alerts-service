@@ -3,7 +3,7 @@
 var amqp = require('amqplib/callback_api');
 
 //open a connection and a channel
-amqp.connect('amqp://172.31.55.143:8090', function(err, conn) {
+amqp.connect(process.env.AMQP_URL, function(err, conn) {
   conn.createChannel(function(err, ch) {
     var q = 'alertsQueue';
 
