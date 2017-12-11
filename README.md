@@ -4,3 +4,6 @@ if ther an alert for one of the stocks in the portfolioit will be shown in the b
 
 ## **Run the App**:
 docker run -d --hostname <my-server> --name ocp-rabbitmq -p 8090:5672 docker-base.artifactory.restest.bank/rabbitmq:3.6.10
+
+node version:
+v6.11.0
