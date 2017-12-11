@@ -16,11 +16,13 @@ pipeline {
                 sh 'echo "Testing server"'
             }
         }
-	stage('Create Docker image'){
+	stage('Create Docker image') {
 	       agent any
-	       sh 'docker images'
-	       sh 'docker build -t  alerts-service .'
-	       sh 'docker images'
+		steps {
+			sh 'docker images'
+			sh 'docker build -t  alerts-service .'
+			sh 'docker images'
+		}	       
 	}
     }
 }
