@@ -20,7 +20,7 @@ pipeline {
 		steps {
 			sh 'cd /tmp/build'
 			sh 'docker images'
-			sh "docker build -t  itamar/${JOB_NAME} ."
+			sh "docker build -t  itamar/${JOB_NAME}:${BUILD_NUMBER} ."
 			sh 'docker images'			
 			sh "docker login -u itamar -p Aa123123"
 	                sh "docker push itamar/${JOB_NAME}:${BUILD_NUMBER}"
