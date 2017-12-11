@@ -1,14 +1,13 @@
 pipeline {
     agent none
     stages {
+        stage('Install packages') {
 	agent {   
 	docker {
             image 'node:8.9.3-wheezy'
 	    args '-u 0 -v /tmp:/app'
             }
-	} 
-        stage('Install packages') {
-
+	}
           steps {
                 sh 'npm install' 
 		sh 'cp -r ./ /app'
