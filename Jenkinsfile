@@ -20,7 +20,7 @@ pipeline {
 	stage('Create Docker image') {
 	       agent any
 		steps {
-			sh 'cp /tmp'
+			sh 'cd /tmp'
 			sh 'docker images'
 			sh 'docker build -t  alerts-service .'
 			sh 'docker images'
