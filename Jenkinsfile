@@ -1,16 +1,17 @@
 pipeline {
-    agent {
-        docker {
+    agent none
+    stages {
+	agent {   
+        stage('Install packages') {
+	 docker {
             image 'node:8.9.3-wheezy'
 	    args '-u 0 -v /tmp:/app'
-        }
-    }
-    stages {
-        stage('Install packages') { 
-            steps {
+            }
+	   } 
+          steps {
                 sh 'npm install' 
 		sh 'cp -r ./ /app'
-            }
+           }
         }
 	stage('Test') { 
             steps {
@@ -24,7 +25,7 @@ pipeline {
 			sh 'docker images'
 			sh 'docker build -t  alerts-service .'
 			sh 'docker images'
-		}	       
+	        }	       
 	}
     }
 }
