@@ -10,7 +10,7 @@ pipeline {
 	}
          steps {
                 sh 'npm install'
-		sh 'rm /app/build/'
+		sh 'ls /app/build && rm /app/build/'
 		sh 'mkdir /app/build/'
 		sh 'cp -r ./* /app/build/'
 		sh 'echo "Testing server"'
@@ -21,8 +21,10 @@ pipeline {
 		steps {
 			sh 'cd /tmp'
 			sh 'docker images'
-			sh 'docker build -t  alerts-service .'
-			sh 'docker images'
+			sh 'docker build -t  itamar/${JOB_NAME} .'
+			sh 'docker images'			
+			sh "docker login -u itamar -p Aa123123"
+	                sh "docker push itamar/${JOB_NAME}:${BUILD_NUMBER}"
 	        }	       
 	}
     }
