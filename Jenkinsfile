@@ -8,15 +8,11 @@ pipeline {
 	    args '-u 0 -v /tmp:/app'
             }
 	}
-          steps {
+         steps {
                 sh 'npm install' 
 		sh 'cp -r ./ /app'
+		sh 'echo "Testing server"'
            }
-        }
-	stage('Test') { 
-            steps {
-                sh 'echo "Testing server"'
-            }
         }
 	stage('Create Docker image') {
 	       agent any
