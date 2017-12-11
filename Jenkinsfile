@@ -10,7 +10,7 @@ pipeline {
 	}
          steps {
                 sh 'npm install'
-		sh 'mkdir /app/build/'
+		sh 'mkdir /app/build/ || echo "dir exists"'
 		sh 'cp -r ./* /app/build/'
 		sh 'echo "Testing server"'
            }
