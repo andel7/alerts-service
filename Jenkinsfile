@@ -18,7 +18,7 @@ pipeline {
 	stage('Create Docker image') {
 	       agent any
 		steps {
-			sh 'cd /tmp'
+			sh 'cd /tmp/build'
 			sh 'docker images'
 			sh "docker build -t  itamar/${JOB_NAME} ."
 			sh 'docker images'			
